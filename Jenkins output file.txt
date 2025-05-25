@@ -1,0 +1,1945 @@
+Started by user Nmesoma Nancy Sunday
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on Jenkins in C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline
+[Pipeline] {
+[Pipeline] withCredentials
+Masking supported pattern matches of %DEFECTDOJO_API_KEY%
+[Pipeline] {
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Git checkout)
+[Pipeline] checkout
+The recommended git tool is: NONE
+No credentials specified
+ > C:\Program Files\Git\bin\git.exe rev-parse --resolve-git-dir C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline\.git # timeout=10
+Fetching changes from the remote Git repository
+ > C:\Program Files\Git\bin\git.exe config remote.origin.url https://github.com/Ardentsoma/juice-shop.git # timeout=10
+Fetching upstream changes from https://github.com/Ardentsoma/juice-shop.git
+ > C:\Program Files\Git\bin\git.exe --version # timeout=10
+ > git --version # 'git version 2.49.0.windows.1'
+ > C:\Program Files\Git\bin\git.exe fetch --tags --force --progress -- https://github.com/Ardentsoma/juice-shop.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > C:\Program Files\Git\bin\git.exe rev-parse "refs/remotes/origin/master^{commit}" # timeout=10
+Checking out Revision bd1abe933411fee157548673165ca0d7c1b1e0d7 (refs/remotes/origin/master)
+ > C:\Program Files\Git\bin\git.exe config core.sparsecheckout # timeout=10
+ > C:\Program Files\Git\bin\git.exe checkout -f bd1abe933411fee157548673165ca0d7c1b1e0d7 # timeout=10
+Commit message: "Fix indentation around emoji"
+ > C:\Program Files\Git\bin\git.exe rev-list --no-walk bd1abe933411fee157548673165ca0d7c1b1e0d7 # timeout=10
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Git leaks scanning)
+[Pipeline] script
+[Pipeline] {
+[Pipeline] catchError
+[Pipeline] {
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>gitleaks detect --source . -v --report-format=json --report-path=gitleaks-report.json 
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+Finding:     '[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m'
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m
+RuleID:      jwt
+Entropy:     5.816161
+File:        test/server/currentUserSpec.ts
+Line:        36
+Commit:      1bd307f67b9a5e7409080b932f1acf65dd3c2350
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2025-03-24T21:18:09Z
+Fingerprint: 1bd307f67b9a5e7409080b932f1acf65dd3c2350:test/server/currentUserSpec.ts:jwt:36
+
+Finding:     privateKey: '[1;3;m0x02c7a2a93289c9fbda5990bac6596993e9bb0a8d3f178175a80b7cfd983983f506[0m'
+Secret:      [1;3;m0x02c7a2a93289c9fbda5990bac6596993e9bb0a8d3f178175a80b7cfd983983f506[0m
+RuleID:      generic-api-key
+Entropy:     3.792360
+File:        test/api/web3Spec.ts
+Line:        36
+Commit:      4e1b04d8043428b71cab5ad020c18b3db42b4361
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-10-20T22:46:46Z
+Fingerprint: 4e1b04d8043428b71cab5ad020c18b3db42b4361:test/api/web3Spec.ts:generic-api-key:36
+
+Finding:     privateKey: '[1;3;m0x8343d2eb2B13A2495De435a1b15e85b98115Ce05[0m'
+Secret:      [1;3;m0x8343d2eb2B13A2495De435a1b15e85b98115Ce05[0m
+RuleID:      generic-api-key
+Entropy:     3.817580
+File:        test/api/web3Spec.ts
+Line:        48
+Commit:      4e1b04d8043428b71cab5ad020c18b3db42b4361
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-10-20T22:46:46Z
+Fingerprint: 4e1b04d8043428b71cab5ad020c18b3db42b4361:test/api/web3Spec.ts:generic-api-key:48
+
+Finding:     privateKey: '[1;3;m0x5bcc3e9d38baa06e7bfaab80ae5957bbe8ef059e640311d7d6d465e6bc948e3e[0m'
+Secret:      [1;3;m0x5bcc3e9d38baa06e7bfaab80ae5957bbe8ef059e640311d7d6d465e6bc948e3e[0m
+RuleID:      generic-api-key
+Entropy:     3.849181
+File:        test/api/web3Spec.ts
+Line:        60
+Commit:      4e1b04d8043428b71cab5ad020c18b3db42b4361
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-10-20T22:46:46Z
+Fingerprint: 4e1b04d8043428b71cab5ad020c18b3db42b4361:test/api/web3Spec.ts:generic-api-key:60
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.ts
+Line:        99
+Commit:      de491d5f28274b26efdb03e6fadf84531496326c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-08-11T23:37:16Z
+Fingerprint: de491d5f28274b26efdb03e6fadf84531496326c:test/api/erasureRequestApiSpec.ts:generic-api-key:99
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.ts
+Line:        119
+Commit:      de491d5f28274b26efdb03e6fadf84531496326c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-08-11T23:37:16Z
+Fingerprint: de491d5f28274b26efdb03e6fadf84531496326c:test/api/erasureRequestApiSpec.ts:generic-api-key:119
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.ts
+Line:        139
+Commit:      de491d5f28274b26efdb03e6fadf84531496326c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2023-08-11T23:37:16Z
+Fingerprint: de491d5f28274b26efdb03e6fadf84531496326c:test/api/erasureRequestApiSpec.ts:generic-api-key:139
+
+Finding:     const BeeTokenAddress = '[1;3;m0x36435796Ca9be2bf150CE0dECc2D8Fab5C4d6E13[0m'
+Secret:      [1;3;m0x36435796Ca9be2bf150CE0dECc2D8Fab5C4d6E13[0m
+RuleID:      generic-api-key
+Entropy:     4.236857
+File:        frontend/src/app/faucet/faucet.component.ts
+Line:        828
+Commit:      c800f7092d8bc08e36da46b8f460b0bb576e832d
+Author:      rishabhkeshan
+Email:       rishabhkeshan@gmail.com
+Date:        2023-07-31T12:59:42Z
+Fingerprint: c800f7092d8bc08e36da46b8f460b0bb576e832d:frontend/src/app/faucet/faucet.component.ts:generic-api-key:828
+
+Finding:     '[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m'
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        cypress/integration/e2e/forgedJwt.spec.ts
+Line:        7
+Commit:      1d1571854621f9fa4150e6fae93b24504d4e5a11
+Author:      ShubhamPalriwala
+Email:       spalriwalau@gmail.com
+Date:        2022-09-12T11:22:42Z
+Fingerprint: 1d1571854621f9fa4150e6fae93b24504d4e5a11:cypress/integration/e2e/forgedJwt.spec.ts:jwt:7
+
+Finding:     '[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m'
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.649111
+File:        cypress/integration/e2e/forgedJwt.spec.ts
+Line:        22
+Commit:      1d1571854621f9fa4150e6fae93b24504d4e5a11
+Author:      ShubhamPalriwala
+Email:       spalriwalau@gmail.com
+Date:        2022-09-12T11:22:42Z
+Fingerprint: 1d1571854621f9fa4150e6fae93b24504d4e5a11:cypress/integration/e2e/forgedJwt.spec.ts:jwt:22
+
+Finding:     totpSecret: '[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m'
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        cypress/integration/e2e/totpSetup.spec.ts
+Line:        7
+Commit:      1d1571854621f9fa4150e6fae93b24504d4e5a11
+Author:      ShubhamPalriwala
+Email:       spalriwalau@gmail.com
+Date:        2022-09-12T11:22:42Z
+Fingerprint: 1d1571854621f9fa4150e6fae93b24504d4e5a11:cypress/integration/e2e/totpSetup.spec.ts:generic-api-key:7
+
+Finding:     ...e.setItem('token', '[1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Imxhc3RMb2dpbklwIjoiMS4yLjMuNCJ9fQ.RAkmdqwNypuOxv3S...[0m'
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Imxhc3RMb2dpbklwIjoiMS4yLjMuNCJ9fQ.RAkmdqwNypuOxv3S...[0m
+RuleID:      jwt
+Entropy:     5.494293
+File:        frontend/src/app/last-login-ip/last-login-ip.component.spec.ts
+Line:        50
+Commit:      1bb101b122c95236faace995a89a2bc5df92b0c3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-07-20T16:23:49Z
+Fingerprint: 1bb101b122c95236faace995a89a2bc5df92b0c3:frontend/src/app/last-login-ip/last-login-ip.component.spec.ts:jwt:50
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.ts
+Line:        37
+Commit:      a03905e4add2087df38d8b193194418ecae87258
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-07-14T11:56:08Z
+Fingerprint: a03905e4add2087df38d8b193194418ecae87258:test/api/erasureRequestApiSpec.ts:generic-api-key:37
+
+Finding:     totpSecret: "[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m"
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        cypress/integration/e2e/totpSetup.spec.ts
+Line:        7
+Commit:      b19993bcee5587459474fc495f35977f542d26e8
+Author:      ShubhamPalriwala
+Email:       spalriwalau@gmail.com
+Date:        2022-06-24T13:27:09Z
+Fingerprint: b19993bcee5587459474fc495f35977f542d26e8:cypress/integration/e2e/totpSetup.spec.ts:generic-api-key:7
+
+Finding:     "[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m"
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        cypress/integration/e2e/forgedJwt.spec.ts
+Line:        7
+Commit:      cb7bddb172d7d01e6403c8551689c3e0a7fb47bf
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-06-23T12:17:00Z
+Fingerprint: cb7bddb172d7d01e6403c8551689c3e0a7fb47bf:cypress/integration/e2e/forgedJwt.spec.ts:jwt:7
+
+Finding:     "[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m"
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.649111
+File:        cypress/integration/e2e/forgedJwt.spec.ts
+Line:        22
+Commit:      cb7bddb172d7d01e6403c8551689c3e0a7fb47bf
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-06-23T12:17:00Z
+Fingerprint: cb7bddb172d7d01e6403c8551689c3e0a7fb47bf:cypress/integration/e2e/forgedJwt.spec.ts:jwt:22
+
+Finding:     ...il.com' && req.body.password === '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m' })
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        routes/login.ts
+Line:        66
+Commit:      49453ae5701ce2142ec59212c4ceced1bcda1040
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-06-13T17:50:44Z
+Fingerprint: 49453ae5701ce2142ec59212c4ceced1bcda1040:routes/login.ts:generic-api-key:66
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/productReviewApiSpec.ts
+Line:        106
+Commit:      279961895c88eae489dae71373e216755bea6ab7
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-05-02T19:57:29Z
+Fingerprint: 279961895c88eae489dae71373e216755bea6ab7:test/api/productReviewApiSpec.ts:generic-api-key:106
+
+Finding:     ...e.setItem("token", "[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m")')
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/e2e/forgedJwtSpec.ts
+Line:        11
+Commit:      fcf8c104c4c23d9d1d5c93ac253a83d6108cda8d
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-01-04T11:31:32Z
+Fingerprint: fcf8c104c4c23d9d1d5c93ac253a83d6108cda8d:test/e2e/forgedJwtSpec.ts:jwt:11
+
+Finding:     ...e.setItem("token", "[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m")')
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.649111
+File:        test/e2e/forgedJwtSpec.ts
+Line:        21
+Commit:      fcf8c104c4c23d9d1d5c93ac253a83d6108cda8d
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2022-01-04T11:31:32Z
+Fingerprint: fcf8c104c4c23d9d1d5c93ac253a83d6108cda8d:test/e2e/forgedJwtSpec.ts:jwt:21
+
+Finding:     ...eq.cookies.token = '[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m'
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m
+RuleID:      jwt
+Entropy:     5.816161
+File:        test/server/currentUserSpec.ts
+Line:        31
+Commit:      3ad2c3f7463662399849d34d3fac098e14e7b22c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-12-27T12:57:46Z
+Fingerprint: 3ad2c3f7463662399849d34d3fac098e14e7b22c:test/server/currentUserSpec.ts:jwt:31
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/server/verifySpec.ts
+Line:        262
+Commit:      3ad2c3f7463662399849d34d3fac098e14e7b22c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-12-27T12:57:46Z
+Fingerprint: 3ad2c3f7463662399849d34d3fac098e14e7b22c:test/server/verifySpec.ts:jwt:262
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m
+RuleID:      jwt
+Entropy:     5.319735
+File:        test/server/verifySpec.ts
+Line:        274
+Commit:      3ad2c3f7463662399849d34d3fac098e14e7b22c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-12-27T12:57:46Z
+Fingerprint: 3ad2c3f7463662399849d34d3fac098e14e7b22c:test/server/verifySpec.ts:jwt:274
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.602798
+File:        test/server/verifySpec.ts
+Line:        296
+Commit:      3ad2c3f7463662399849d34d3fac098e14e7b22c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-12-27T12:57:46Z
+Fingerprint: 3ad2c3f7463662399849d34d3fac098e14e7b22c:test/server/verifySpec.ts:jwt:296
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m
+RuleID:      jwt
+Entropy:     5.549674
+File:        test/server/verifySpec.ts
+Line:        308
+Commit:      3ad2c3f7463662399849d34d3fac098e14e7b22c
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-12-27T12:57:46Z
+Fingerprint: 3ad2c3f7463662399849d34d3fac098e14e7b22c:test/server/verifySpec.ts:jwt:308
+
+Finding:     ...: { Authorization: '[1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m' } })
+Secret:      [1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m
+RuleID:      jwt
+Entropy:     5.708447
+File:        test/api/userApiSpec.ts
+Line:        262
+Commit:      660f3abd11dea0019526c6b328dc7907813a9cab
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-04-03T16:36:14Z
+Fingerprint: 660f3abd11dea0019526c6b328dc7907813a9cab:test/api/userApiSpec.ts:jwt:262
+
+Finding:     ...e.setItem('token', '[1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE...[0m'
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE...[0m
+RuleID:      jwt
+Entropy:     5.444070
+File:        frontend/src/app/app.guard.spec.ts
+Line:        40
+Commit:      6f79b44421dc8e79ed8a61450d58a5c66d14b61f
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-02-01T17:24:49Z
+Fingerprint: 6f79b44421dc8e79ed8a61450d58a5c66d14b61f:frontend/src/app/app.guard.spec.ts:jwt:40
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        161
+Commit:      ecbd8903801fd86afcd8a2e3b92221175857b1fb
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-02-01T00:46:29Z
+Fingerprint: ecbd8903801fd86afcd8a2e3b92221175857b1fb:test/api/chatBotSpec.js:generic-api-key:161
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        99
+Commit:      ca61daf7a96c585a509616f183afa8f8884fcab8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-29T09:26:16Z
+Fingerprint: ca61daf7a96c585a509616f183afa8f8884fcab8:test/api/chatBotSpec.js:generic-api-key:99
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        127
+Commit:      ca61daf7a96c585a509616f183afa8f8884fcab8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-29T09:26:16Z
+Fingerprint: ca61daf7a96c585a509616f183afa8f8884fcab8:test/api/chatBotSpec.js:generic-api-key:127
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        180
+Commit:      ca61daf7a96c585a509616f183afa8f8884fcab8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-29T09:26:16Z
+Fingerprint: ca61daf7a96c585a509616f183afa8f8884fcab8:test/api/chatBotSpec.js:generic-api-key:180
+
+Finding:     ...l: 'test@test.com', password: '[1;3;mbW9jLnRzZXRAdHNldA==[0m', passwordRepeat: 'b...
+Secret:      [1;3;mbW9jLnRzZXRAdHNldA==[0m
+RuleID:      generic-api-key
+Entropy:     3.921928
+File:        frontend/src/app/oauth/oauth.component.spec.ts
+Line:        83
+Commit:      d73a4d4231f5ee97a2f92efd99893d0158fa4f33
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-10T22:44:10Z
+Fingerprint: d73a4d4231f5ee97a2f92efd99893d0158fa4f33:frontend/src/app/oauth/oauth.component.spec.ts:generic-api-key:83
+
+Finding:     ...jLnRzZXRAdHNldA==', passwordRepeat: '[1;3;mbW9jLnRzZXRAdHNldA==[0m' })
+Secret:      [1;3;mbW9jLnRzZXRAdHNldA==[0m
+RuleID:      generic-api-key
+Entropy:     3.921928
+File:        frontend/src/app/oauth/oauth.component.spec.ts
+Line:        83
+Commit:      d73a4d4231f5ee97a2f92efd99893d0158fa4f33
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-10T22:44:10Z
+Fingerprint: d73a4d4231f5ee97a2f92efd99893d0158fa4f33:frontend/src/app/oauth/oauth.component.spec.ts:generic-api-key:83
+
+Finding:     ...l: 'test@test.com', password: '[1;3;mbW9jLnRzZXRAdHNldA==[0m', oauth: true })
+Secret:      [1;3;mbW9jLnRzZXRAdHNldA==[0m
+RuleID:      generic-api-key
+Entropy:     3.921928
+File:        frontend/src/app/oauth/oauth.component.spec.ts
+Line:        90
+Commit:      d73a4d4231f5ee97a2f92efd99893d0158fa4f33
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2021-01-10T22:44:10Z
+Fingerprint: d73a4d4231f5ee97a2f92efd99893d0158fa4f33:frontend/src/app/oauth/oauth.component.spec.ts:generic-api-key:90
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        153
+Commit:      dcd1cda9afeed249d5dec0469aa51585ed2ab8d1
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-09-08T06:54:16Z
+Fingerprint: dcd1cda9afeed249d5dec0469aa51585ed2ab8d1:test/api/chatBotSpec.js:generic-api-key:153
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        154
+Commit:      e6137d76bb18c55875b4284761e8939635f127af
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-09-07T15:46:54Z
+Fingerprint: e6137d76bb18c55875b4284761e8939635f127af:test/api/chatBotSpec.js:generic-api-key:154
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        150
+Commit:      cda3cbc2aa8c5a61782bbc679cbb1ccb269b43cc
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-08-20T15:09:15Z
+Fingerprint: cda3cbc2aa8c5a61782bbc679cbb1ccb269b43cc:test/api/chatBotSpec.js:generic-api-key:150
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        72
+Commit:      f672660b96a48d8bbd2d6382321a0c0c1628cb25
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-08-01T01:41:27Z
+Fingerprint: f672660b96a48d8bbd2d6382321a0c0c1628cb25:test/api/chatBotSpec.js:generic-api-key:72
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/chatBotSpec.js
+Line:        106
+Commit:      f672660b96a48d8bbd2d6382321a0c0c1628cb25
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-08-01T01:41:27Z
+Fingerprint: f672660b96a48d8bbd2d6382321a0c0c1628cb25:test/api/chatBotSpec.js:generic-api-key:106
+
+Finding:     ...e.setItem("token", "[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m")')
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.649111
+File:        test/e2e/forgedJwtSpec.js
+Line:        20
+Commit:      c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-03-17T12:57:56Z
+Fingerprint: c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe:test/e2e/forgedJwtSpec.js:jwt:20
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.602798
+File:        test/server/verifySpec.js
+Line:        291
+Commit:      c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-03-17T12:57:56Z
+Fingerprint: c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe:test/server/verifySpec.js:jwt:291
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m
+RuleID:      jwt
+Entropy:     5.549674
+File:        test/server/verifySpec.js
+Line:        303
+Commit:      c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-03-17T12:57:56Z
+Fingerprint: c1ccf7243a6fa7a44a84cd5a4b2f1e5497d055fe:test/server/verifySpec.js:jwt:303
+
+Finding:     ...enticatedUsers.put('[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m', { data: { id: 1, e...
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m
+RuleID:      jwt
+Entropy:     5.816161
+File:        test/server/currentUserSpec.js
+Line:        31
+Commit:      57a9bf5559105d8e5810bcef216c85601cf663b1
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-03-11T16:09:19Z
+Fingerprint: 57a9bf5559105d8e5810bcef216c85601cf663b1:test/server/currentUserSpec.js:jwt:31
+
+Finding:     ...e.setItem("token", "[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m")')
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.649111
+File:        test/e2e/forgedJwtSpec.js
+Line:        18
+Commit:      531e32d9d84bb76b16c51b4dffbed1ce5a26f781
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-03-01T04:46:19Z
+Fingerprint: 531e32d9d84bb76b16c51b4dffbed1ce5a26f781:test/e2e/forgedJwtSpec.js:jwt:18
+
+Finding:     ...eq.cookies.token = '[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m'
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m
+RuleID:      jwt
+Entropy:     5.816161
+File:        test/server/currentUserSpec.js
+Line:        29
+Commit:      128e3a3a9b1b13d44fef28360976531a5ce0a5fa
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-02-20T18:14:50Z
+Fingerprint: 128e3a3a9b1b13d44fef28360976531a5ce0a5fa:test/server/currentUserSpec.js:jwt:29
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.602798
+File:        test/server/verifySpec.js
+Line:        289
+Commit:      128e3a3a9b1b13d44fef28360976531a5ce0a5fa
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-02-20T18:14:50Z
+Fingerprint: 128e3a3a9b1b13d44fef28360976531a5ce0a5fa:test/server/verifySpec.js:jwt:289
+
+Finding:     ...horization: 'Bearer [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m' }
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTU4MjIyMTY3NX0...[0m
+RuleID:      jwt
+Entropy:     5.549674
+File:        test/server/verifySpec.js
+Line:        301
+Commit:      128e3a3a9b1b13d44fef28360976531a5ce0a5fa
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-02-20T18:14:50Z
+Fingerprint: 128e3a3a9b1b13d44fef28360976531a5ce0a5fa:test/server/verifySpec.js:jwt:301
+
+Finding:     ...enticatedUsers.put('[1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m', { data: { id: 1, e...
+Secret:      [1;3;meyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJkYXRhIjp7ImlkIjoxLCJlbWFpbCI6ImFkbWluQGp1aWNlLXNoLm9wIiwibGF...[0m
+RuleID:      jwt
+Entropy:     5.816161
+File:        test/server/currentUserSpec.js
+Line:        31
+Commit:      128e3a3a9b1b13d44fef28360976531a5ce0a5fa
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-02-20T18:14:50Z
+Fingerprint: 128e3a3a9b1b13d44fef28360976531a5ce0a5fa:test/server/currentUserSpec.js:jwt:31
+
+Finding:     ...enticatedUsers.put('[1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m', { data: { id: 1, e...
+Secret:      [1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m
+RuleID:      jwt
+Entropy:     5.710836
+File:        test/server/currentUserSpec.js
+Line:        31
+Commit:      9b6b0b5e49ca4122f0d6daa7433d3d2c1833ce38
+Author:      Scar26
+Email:       mmatty26@gmail.com
+Date:        2020-02-25T23:13:05Z
+Fingerprint: 9b6b0b5e49ca4122f0d6daa7433d3d2c1833ce38:test/server/currentUserSpec.js:jwt:31
+
+Finding:     ...il.com' && req.body.password === '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m' })
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        routes/login.js
+Line:        65
+Commit:      b8fee634c2762e6df287ccd988129c5bb557efb5
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2020-01-17T16:14:46Z
+Fingerprint: b8fee634c2762e6df287ccd988129c5bb557efb5:routes/login.js:generic-api-key:65
+
+Finding:     ...eq.cookies.token = '[1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m'
+Secret:      [1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m
+RuleID:      jwt
+Entropy:     5.710836
+File:        test/server/currentUserSpec.js
+Line:        24
+Commit:      6dcd8f5446be322bd58df2a750a0d9bbb8d853d8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-19T19:19:58Z
+Fingerprint: 6dcd8f5446be322bd58df2a750a0d9bbb8d853d8:test/server/currentUserSpec.js:jwt:24
+
+Finding:     ...enticatedUsers.put('[1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m', { data: { id: 1, e...
+Secret:      [1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m
+RuleID:      jwt
+Entropy:     5.710836
+File:        test/server/currentUserSpec.js
+Line:        26
+Commit:      6dcd8f5446be322bd58df2a750a0d9bbb8d853d8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-19T19:19:58Z
+Fingerprint: 6dcd8f5446be322bd58df2a750a0d9bbb8d853d8:test/server/currentUserSpec.js:jwt:26
+
+Finding:     ...: { Authorization: '[1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m' } })
+Secret:      [1;3;meyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdGF0dXMiOiJzdWNjZXNzIiwiZGF0YSI6eyJpZCI6MSwidXNlcm5hbWUiOiI...[0m
+RuleID:      jwt
+Entropy:     5.708447
+File:        test/api/userApiSpec.js
+Line:        254
+Commit:      1a5ce906c84c4d7cfbb994910b4e23742fa42bae
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-19T16:12:23Z
+Fingerprint: 1a5ce906c84c4d7cfbb994910b4e23742fa42bae:test/api/userApiSpec.js:jwt:254
+
+Finding:     ...il.com' && req.body.password === '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m') {
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        routes/login.js
+Line:        72
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:routes/login.js:generic-api-key:72
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/dataExportApiSpec.js
+Line:        13
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/dataExportApiSpec.js:generic-api-key:13
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/basketApiSpec.js
+Line:        81
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/basketApiSpec.js:generic-api-key:81
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.js
+Line:        12
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/erasureRequestApiSpec.js:generic-api-key:12
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/dataExportApiSpec.js
+Line:        40
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/dataExportApiSpec.js:generic-api-key:40
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/erasureRequestApiSpec.js
+Line:        26
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/erasureRequestApiSpec.js:generic-api-key:26
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        data/static/users.yml
+Line:        37
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:data/static/users.yml:generic-api-key:37
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/dataExportApiSpec.js
+Line:        69
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/dataExportApiSpec.js:generic-api-key:69
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/feedbackApiSpec.js
+Line:        110
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/feedbackApiSpec.js:generic-api-key:110
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/loginApiSpec.js
+Line:        143
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/loginApiSpec.js:generic-api-key:143
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/productReviewApiSpec.js
+Line:        99
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/productReviewApiSpec.js:generic-api-key:99
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/feedbackApiSpec.js
+Line:        143
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/feedbackApiSpec.js:generic-api-key:143
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/loginApiSpec.js
+Line:        245
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/loginApiSpec.js:generic-api-key:245
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/userApiSpec.js
+Line:        146
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/userApiSpec.js:generic-api-key:146
+
+Finding:     password: '[1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m'
+Secret:      [1;3;mbW9jLmxpYW1nQGhjaW5pbW1pay5ucmVvamI=[0m
+RuleID:      generic-api-key
+Entropy:     4.329240
+File:        test/api/loginApiSpec.js
+Line:        266
+Commit:      206336a5e5db795e387fd0405365795fdf25c7b6
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-08-01T15:19:44Z
+Fingerprint: 206336a5e5db795e387fd0405365795fdf25c7b6:test/api/loginApiSpec.js:generic-api-key:266
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/productReviewApiSpec.js
+Line:        99
+Commit:      994b994503142849b62d543e54e66d92ca83c34e
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-06-21T15:05:26Z
+Fingerprint: 994b994503142849b62d543e54e66d92ca83c34e:test/api/productReviewApiSpec.js:generic-api-key:99
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/loginApiSpec.js
+Line:        245
+Commit:      2a8f815583bf5e91e655b0ea5d38529c89e64b20
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-06-21T15:28:16Z
+Fingerprint: 2a8f815583bf5e91e655b0ea5d38529c89e64b20:test/api/loginApiSpec.js:generic-api-key:245
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/loginApiSpec.js
+Line:        266
+Commit:      2a8f815583bf5e91e655b0ea5d38529c89e64b20
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-06-21T15:28:16Z
+Fingerprint: 2a8f815583bf5e91e655b0ea5d38529c89e64b20:test/api/loginApiSpec.js:generic-api-key:266
+
+Finding:     ...il.com' && req.body.password === '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m') {
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        routes/login.js
+Line:        72
+Commit:      f121dcfc0b8a7970c50153490321943d03ce74ba
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-06-05T21:32:14Z
+Fingerprint: f121dcfc0b8a7970c50153490321943d03ce74ba:routes/login.js:generic-api-key:72
+
+[90m7:22AM[0m [1m[31mERR[0m[0m [git] Failed to extract required information from <C:\Users\TEMP\AppData\Local\Temp/git-blob-a02744/invalidProfileImageType.docx>!
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/dataSubjectApiSpec.js
+Line:        13
+Commit:      dd5019267adf92b2f5b997358feeaea01c301197
+Author:      Supratik Das
+Email:       rick.das08@gmail.com
+Date:        2019-04-29T16:31:36Z
+Fingerprint: dd5019267adf92b2f5b997358feeaea01c301197:test/api/dataSubjectApiSpec.js:generic-api-key:13
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/dataSubjectApiSpec.js
+Line:        27
+Commit:      dd5019267adf92b2f5b997358feeaea01c301197
+Author:      Supratik Das
+Email:       rick.das08@gmail.com
+Date:        2019-04-29T16:31:36Z
+Fingerprint: dd5019267adf92b2f5b997358feeaea01c301197:test/api/dataSubjectApiSpec.js:generic-api-key:27
+
+Finding:     const totpSecret = '[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m'
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        test/api/2faSpec.js
+Line:        345
+Commit:      87e328633380e3aff53339b9416ce05e9182b80e
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-04-15T17:32:17Z
+Fingerprint: 87e328633380e3aff53339b9416ce05e9182b80e:test/api/2faSpec.js:generic-api-key:345
+
+Finding:     totpSecret: '[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m'
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        test/e2e/2faSetupSpec.js
+Line:        25
+Commit:      48b05c876a345f6369c6eeadcb6ca04d14c82ab9
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-04-15T12:57:06Z
+Fingerprint: 48b05c876a345f6369c6eeadcb6ca04d14c82ab9:test/e2e/2faSetupSpec.js:generic-api-key:25
+
+Finding:     totpSecret: '[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m'
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        test/api/2faSpec.js
+Line:        110
+Commit:      f01c45062da3b3e1f5be2e5b679bc84acf5e7d43
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-04-13T17:31:24Z
+Fingerprint: f01c45062da3b3e1f5be2e5b679bc84acf5e7d43:test/api/2faSpec.js:generic-api-key:110
+
+Finding:     totpSecret: '[1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m'
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        test/api/2faSpec.js
+Line:        111
+Commit:      3b543fde9a146c957daf1cb3beea716851376f56
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-04-13T14:35:23Z
+Fingerprint: 3b543fde9a146c957daf1cb3beea716851376f56:test/api/2faSpec.js:generic-api-key:111
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/dataExportApiSpec.js
+Line:        12
+Commit:      c98a53f3effa49653c2ac1baf4d41b42c018000b
+Author:      agrawalarpit14
+Email:       agrawal.arpit14@gmail.com
+Date:        2019-04-10T10:06:14Z
+Fingerprint: c98a53f3effa49653c2ac1baf4d41b42c018000b:test/api/dataExportApiSpec.js:generic-api-key:12
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/dataExportApiSpec.js
+Line:        36
+Commit:      c98a53f3effa49653c2ac1baf4d41b42c018000b
+Author:      agrawalarpit14
+Email:       agrawal.arpit14@gmail.com
+Date:        2019-04-10T10:06:14Z
+Fingerprint: c98a53f3effa49653c2ac1baf4d41b42c018000b:test/api/dataExportApiSpec.js:generic-api-key:36
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/dataExportApiSpec.js
+Line:        65
+Commit:      c98a53f3effa49653c2ac1baf4d41b42c018000b
+Author:      agrawalarpit14
+Email:       agrawal.arpit14@gmail.com
+Date:        2019-04-10T10:06:14Z
+Fingerprint: c98a53f3effa49653c2ac1baf4d41b42c018000b:test/api/dataExportApiSpec.js:generic-api-key:65
+
+Finding:     totpSecret: [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        data/static/users.yml
+Line:        84
+Commit:      06e3afc010bcc9fab17b7c88a3c8aa42356897f8
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2019-02-27T00:39:09Z
+Fingerprint: 06e3afc010bcc9fab17b7c88a3c8aa42356897f8:data/static/users.yml:generic-api-key:84
+
+Finding:     totpSecret: [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        data/static/users.yml
+Line:        75
+Commit:      b751705ebff0d6fd03331a2a8e64f1c5816badd7
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-02-10T19:33:08Z
+Fingerprint: b751705ebff0d6fd03331a2a8e64f1c5816badd7:data/static/users.yml:generic-api-key:75
+
+Finding:     totp_secret: [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+Secret:      [1;3;mIFTXE3SPOEYVURT2MRYGI52TKJ4HC3KH[0m
+RuleID:      generic-api-key
+Entropy:     4.351410
+File:        data/static/users.yml
+Line:        45
+Commit:      5ef14a541ca3b3448e1dcf1f2a401e24add2ef18
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2019-02-03T11:24:06Z
+Fingerprint: 5ef14a541ca3b3448e1dcf1f2a401e24add2ef18:data/static/users.yml:generic-api-key:45
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/basketApiSpec.js
+Line:        81
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:test/api/basketApiSpec.js:generic-api-key:81
+
+Finding:     ...il.com' && req.body.password === '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m') {
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        routes/login.js
+Line:        41
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:routes/login.js:generic-api-key:41
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/passwordApiSpec.js
+Line:        42
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:test/api/passwordApiSpec.js:generic-api-key:42
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/feedbackApiSpec.js
+Line:        110
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:test/api/feedbackApiSpec.js:generic-api-key:110
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/feedbackApiSpec.js
+Line:        143
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:test/api/feedbackApiSpec.js:generic-api-key:143
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/userApiSpec.js
+Line:        118
+Commit:      434a1428f16a38abf9185111f7c57379f8c349f3
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-07T00:11:37Z
+Fingerprint: 434a1428f16a38abf9185111f7c57379f8c349f3:test/api/userApiSpec.js:generic-api-key:118
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        data/static/users.yml
+Line:        18
+Commit:      e4886a82bccc81f178b7e843eded90cb7b97c33e
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-06T09:28:03Z
+Fingerprint: e4886a82bccc81f178b7e843eded90cb7b97c33e:data/static/users.yml:generic-api-key:18
+
+Finding:     password: '[1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m'
+Secret:      [1;3;mbW9jLmxpYW1lbGdvb2dAaGNpbmltbWlrLm5yZW9qYg==[0m
+RuleID:      generic-api-key
+Entropy:     4.479445
+File:        test/api/loginApiSpec.js
+Line:        125
+Commit:      e4886a82bccc81f178b7e843eded90cb7b97c33e
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-11-06T09:28:03Z
+Fingerprint: e4886a82bccc81f178b7e843eded90cb7b97c33e:test/api/loginApiSpec.js:generic-api-key:125
+
+Finding:     ...e: 'token', value: '[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m' })
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/e2e/forgedJwtSpec.js
+Line:        4
+Commit:      eb864dd8a6842b4de68c199c706bd2626be6cc5d
+Author:      Aashish683
+Email:       aashishsingh2907@gmail.com
+Date:        2018-06-30T15:15:32Z
+Fingerprint: eb864dd8a6842b4de68c199c706bd2626be6cc5d:test/e2e/forgedJwtSpec.js:jwt:4
+
+Finding:     ...e.setItem("token", "[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m")')
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/e2e/forgedJwtSpec.js
+Line:        5
+Commit:      eb864dd8a6842b4de68c199c706bd2626be6cc5d
+Author:      Aashish683
+Email:       aashishsingh2907@gmail.com
+Date:        2018-06-30T15:15:32Z
+Fingerprint: eb864dd8a6842b4de68c199c706bd2626be6cc5d:test/e2e/forgedJwtSpec.js:jwt:5
+
+Finding:     ...e: 'token', value: '[1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' })
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.550624
+File:        test/e2e/forgedJwtSpec.js
+Line:        14
+Commit:      eb864dd8a6842b4de68c199c706bd2626be6cc5d
+Author:      Aashish683
+Email:       aashishsingh2907@gmail.com
+Date:        2018-06-30T15:15:32Z
+Fingerprint: eb864dd8a6842b4de68c199c706bd2626be6cc5d:test/e2e/forgedJwtSpec.js:jwt:14
+
+Finding:     ...e.setItem("token", "[1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m")')
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.550624
+File:        test/e2e/forgedJwtSpec.js
+Line:        15
+Commit:      eb864dd8a6842b4de68c199c706bd2626be6cc5d
+Author:      Aashish683
+Email:       aashishsingh2907@gmail.com
+Date:        2018-06-30T15:15:32Z
+Fingerprint: eb864dd8a6842b4de68c199c706bd2626be6cc5d:test/e2e/forgedJwtSpec.js:jwt:15
+
+Finding:     ...ateDonationBilling&rapidsStateSignature=[1;3;me45ee9d32a087cceb12fa4c851574a56ca31305c[0m"><button type="submi...
+Secret:      [1;3;me45ee9d32a087cceb12fa4c851574a56ca31305c[0m
+RuleID:      generic-api-key
+Entropy:     3.784830
+File:        frontend/src/app/basket/basket.component.html
+Line:        80
+Commit:      34b64ba5e4a5a138cd970f567acbeb647f2560cb
+Author:      Aashish683
+Email:       aashishsingh2907@gmail.com
+Date:        2018-06-03T18:51:07Z
+Fingerprint: 34b64ba5e4a5a138cd970f567acbeb647f2560cb:frontend/src/app/basket/basket.component.html:generic-api-key:80
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        data/static/users.yml
+Line:        18
+Commit:      114803a321f29442ed8588154e27c103702c5f83
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-03-14T12:49:34Z
+Fingerprint: 114803a321f29442ed8588154e27c103702c5f83:data/static/users.yml:generic-api-key:18
+
+Finding:     password: [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        data/static/users.yml
+Line:        15
+Commit:      4c4fe4a1ed5748f281afc9329feb457b1c028cee
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2018-03-06T15:01:40Z
+Fingerprint: 4c4fe4a1ed5748f281afc9329feb457b1c028cee:data/static/users.yml:generic-api-key:15
+
+Finding:     "password": "[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m"
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        data/data/users.json
+Line:        22
+Commit:      a9139a134eefb60a7441b7619b991e62d5faf8d9
+Author:      Jannik Hollenbach
+Email:       jannik.hollenbach@owasp.org
+Date:        2018-03-04T18:25:41Z
+Fingerprint: a9139a134eefb60a7441b7619b991e62d5faf8d9:data/data/users.json:generic-api-key:22
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/server/verifySpec.js
+Line:        225
+Commit:      f3f7a81f316ada34609e1220fb0be4f602b49b82
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-01-24T14:09:35Z
+Fingerprint: f3f7a81f316ada34609e1220fb0be4f602b49b82:test/server/verifySpec.js:jwt:225
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m
+RuleID:      jwt
+Entropy:     5.319735
+File:        test/server/verifySpec.js
+Line:        237
+Commit:      f3f7a81f316ada34609e1220fb0be4f602b49b82
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-01-24T14:09:35Z
+Fingerprint: f3f7a81f316ada34609e1220fb0be4f602b49b82:test/server/verifySpec.js:jwt:237
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' }
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.550624
+File:        test/server/verifySpec.js
+Line:        258
+Commit:      f3f7a81f316ada34609e1220fb0be4f602b49b82
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-01-24T14:09:35Z
+Fingerprint: f3f7a81f316ada34609e1220fb0be4f602b49b82:test/server/verifySpec.js:jwt:258
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTUwODYzOTYxMiw...[0m' }
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTUwODYzOTYxMiw...[0m
+RuleID:      jwt
+Entropy:     5.604085
+File:        test/server/verifySpec.js
+Line:        270
+Commit:      f3f7a81f316ada34609e1220fb0be4f602b49b82
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2018-01-24T14:09:35Z
+Fingerprint: f3f7a81f316ada34609e1220fb0be4f602b49b82:test/server/verifySpec.js:jwt:270
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/passwordApiSpec.js
+Line:        63
+Commit:      4e91654448ba527161dbab0a9ce975ecd1b3fcee
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-12-02T00:00:18Z
+Fingerprint: 4e91654448ba527161dbab0a9ce975ecd1b3fcee:test/api/passwordApiSpec.js:generic-api-key:63
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/loginApiSpec.js
+Line:        94
+Commit:      4e91654448ba527161dbab0a9ce975ecd1b3fcee
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-12-02T00:00:18Z
+Fingerprint: 4e91654448ba527161dbab0a9ce975ecd1b3fcee:test/api/loginApiSpec.js:generic-api-key:94
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQCJ9LCJpYXQiOjE1MDg2Mzk2MTIsImV4...[0m
+RuleID:      jwt
+Entropy:     5.319735
+File:        test/server/verifySpec.js
+Line:        239
+Commit:      318ba467ea39276f0467cf3bf0664153a696cc58
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-25T22:55:13Z
+Fingerprint: 318ba467ea39276f0467cf3bf0664153a696cc58:test/server/verifySpec.js:jwt:239
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTUwODYzOTYxMiw...[0m' }
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAIn0sImlhdCI6MTUwODYzOTYxMiw...[0m
+RuleID:      jwt
+Entropy:     5.604085
+File:        test/server/verifySpec.js
+Line:        272
+Commit:      318ba467ea39276f0467cf3bf0664153a696cc58
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-25T22:55:13Z
+Fingerprint: 318ba467ea39276f0467cf3bf0664153a696cc58:test/server/verifySpec.js:jwt:272
+
+Finding:     ...e: 'token', value: '[1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m' })
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/e2e/forgedJwtSpec.js
+Line:        4
+Commit:      7fa085f79ac217ec0ab8e7d402598c781e07215e
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-24T23:06:04Z
+Fingerprint: 7fa085f79ac217ec0ab8e7d402598c781e07215e:test/e2e/forgedJwtSpec.js:jwt:4
+
+Finding:     ...e: 'token', value: '[1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' })
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.550624
+File:        test/e2e/forgedJwtSpec.js
+Line:        13
+Commit:      7fa085f79ac217ec0ab8e7d402598c781e07215e
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-24T23:06:04Z
+Fingerprint: 7fa085f79ac217ec0ab8e7d402598c781e07215e:test/e2e/forgedJwtSpec.js:jwt:13
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m' }
+Secret:      [1;3;meyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJkYXRhIjp7ImVtYWlsIjoiand0bjNkQGp1aWNlLXNoLm9wIn0sImlhdCI6MTUw...[0m
+RuleID:      jwt
+Entropy:     5.302954
+File:        test/server/verifySpec.js
+Line:        227
+Commit:      0ac15ff7f7ea26b7a1c4d240441de6d348b11a5b
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-22T03:03:00Z
+Fingerprint: 0ac15ff7f7ea26b7a1c4d240441de6d348b11a5b:test/server/verifySpec.js:jwt:227
+
+Finding:     ...horization: 'Bearer [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m' }
+Secret:      [1;3;meyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImVtYWlsIjoicnNhX2xvcmRAanVpY2Utc2gub3AifSwiaWF0Ijo...[0m
+RuleID:      jwt
+Entropy:     5.550624
+File:        test/server/verifySpec.js
+Line:        248
+Commit:      0ac15ff7f7ea26b7a1c4d240441de6d348b11a5b
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-10-22T03:03:00Z
+Fingerprint: 0ac15ff7f7ea26b7a1c4d240441de6d348b11a5b:test/server/verifySpec.js:jwt:248
+
+Finding:     const privateKey = '[1;3;m-----BEGIN RSA PRIVATE KEY-----\r\nMIICXAIBAAKBgQDNwqLEe9wgTXCbC7+RPdDbBbeqjdbs4kOPOIGzqLpXvJXlxxW8i...[0m
+Secret:      [1;3;m-----BEGIN RSA PRIVATE KEY-----\r\nMIICXAIBAAKBgQDNwqLEe9wgTXCbC7+RPdDbBbeqjdbs4kOPOIGzqLpXvJXlxxW8i...[0m
+RuleID:      private-key
+Entropy:     5.981350
+File:        lib/insecurity.js
+Line:        10
+Commit:      2adcd7231f30e12601c8e80a3b49b3420418debe
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-10-10T20:55:52Z
+Fingerprint: 2adcd7231f30e12601c8e80a3b49b3420418debe:lib/insecurity.js:private-key:10
+
+Finding:     var privateKey = '[1;3;m-----BEGIN RSA PRIVATE KEY-----\r\nMIICXAIBAAKBgQDNwqLEe9wgTXCbC7+RPdDbBbeqjdbs4kOPOIGzqLpXvJXlxxW8i...[0m
+Secret:      [1;3;m-----BEGIN RSA PRIVATE KEY-----\r\nMIICXAIBAAKBgQDNwqLEe9wgTXCbC7+RPdDbBbeqjdbs4kOPOIGzqLpXvJXlxxW8i...[0m
+RuleID:      private-key
+Entropy:     5.981350
+File:        lib/insecurity.js
+Line:        12
+Commit:      46ce24254d8f6ae90bd49dcd3dc73027add46caf
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-10-10T20:22:59Z
+Fingerprint: 46ce24254d8f6ae90bd49dcd3dc73027add46caf:lib/insecurity.js:private-key:12
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/basketApiSpec.js
+Line:        94
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/basketApiSpec.js:generic-api-key:94
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/feedbackApiSpec.js
+Line:        85
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/feedbackApiSpec.js:generic-api-key:85
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/feedbackApiSpec.js
+Line:        112
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/feedbackApiSpec.js:generic-api-key:112
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        122
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/userApiSpec.js:generic-api-key:122
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        249
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/userApiSpec.js:generic-api-key:249
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/basketApiSpec.js
+Line:        94
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/basketApiSpec.js:generic-api-key:94
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        414
+Commit:      e970d58af6627e2a7ddad0d7cc8c01c3192b13c8
+Author:      Josh Grossman
+Email:       tghosth@users.noreply.github.com
+Date:        2017-08-06T09:22:47Z
+Fingerprint: e970d58af6627e2a7ddad0d7cc8c01c3192b13c8:test/api/userApiSpec.js:generic-api-key:414
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/feedbackApiSpec.js
+Line:        85
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/feedbackApiSpec.js:generic-api-key:85
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/feedbackApiSpec.js
+Line:        112
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/feedbackApiSpec.js:generic-api-key:112
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        122
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/userApiSpec.js:generic-api-key:122
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        249
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/userApiSpec.js:generic-api-key:249
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/api/userApiSpec.js
+Line:        414
+Commit:      03f756d221a0d6473a0174a55fefe189ee7ecd85
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-07-28T13:45:52Z
+Fingerprint: 03f756d221a0d6473a0174a55fefe189ee7ecd85:test/api/userApiSpec.js:generic-api-key:414
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        data/datacreator.js
+Line:        510
+Commit:      af5dfc11265014f780ba31b7b696f55be3d9ea67
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2017-06-16T14:48:33Z
+Fingerprint: af5dfc11265014f780ba31b7b696f55be3d9ea67:data/datacreator.js:generic-api-key:510
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        test/server/userApiSpec.js
+Line:        190
+Commit:      6059c7111dae174cacbd75345f49966381f397ec
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2016-10-25T00:14:02Z
+Fingerprint: 6059c7111dae174cacbd75345f49966381f397ec:test/server/userApiSpec.js:generic-api-key:190
+
+Finding:     ...il.com' && req.body.password === '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m') {
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        routes/login.js
+Line:        13
+Commit:      3df64d5cc9ed0ed0f429eb537973430c66280cfe
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2016-10-24T21:52:59Z
+Fingerprint: 3df64d5cc9ed0ed0f429eb537973430c66280cfe:routes/login.js:generic-api-key:13
+
+Finding:     password: '[1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m'
+Secret:      [1;3;mYmpvZXJuLmtpbW1pbmljaEBnb29nbGVtYWlsLmNvbQ==[0m
+RuleID:      generic-api-key
+Entropy:     4.542056
+File:        data/datacreator.js
+Line:        317
+Commit:      3df64d5cc9ed0ed0f429eb537973430c66280cfe
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2016-10-24T21:52:59Z
+Fingerprint: 3df64d5cc9ed0ed0f429eb537973430c66280cfe:data/datacreator.js:generic-api-key:317
+
+Finding:     var secret = '[1;3;mh0lyHandgr3nade[0m'
+Secret:      [1;3;mh0lyHandgr3nade[0m
+RuleID:      generic-api-key
+Entropy:     3.506891
+File:        server.js
+Line:        24
+Commit:      ac11dd38cf84483608c03504a9f353fe2f4ed76f
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2014-09-30T11:19:49Z
+Fingerprint: ac11dd38cf84483608c03504a9f353fe2f4ed76f:server.js:generic-api-key:24
+
+Finding:     repo_token: [1;3;m4c1b01eba7eeb3e9af53beaa4f097b5a49754c4edb8e95d59088bac519607637[0m
+Secret:      [1;3;m4c1b01eba7eeb3e9af53beaa4f097b5a49754c4edb8e95d59088bac519607637[0m
+RuleID:      generic-api-key
+Entropy:     3.780139
+File:        .travis.yml
+Line:        8
+Commit:      8a474274d6fa9335c23fe1ca2dc19688e7dffac5
+Author:      Björn Kimminich
+Email:       bjoern.kimminich@owasp.org
+Date:        2014-09-19T15:39:04Z
+Fingerprint: 8a474274d6fa9335c23fe1ca2dc19688e7dffac5:.travis.yml:generic-api-key:8
+
+[90m7:22AM[0m [1m[31mERR[0m[0m failed to scan Git repository [36merror=[0m[31m"stderr is not empty"[0m
+[90m7:22AM[0m [32mINF[0m scan completed in 29.1s
+[90m7:22AM[0m [31mWRN[0m leaks found: 132
+[Pipeline] }
+ERROR: script returned exit code 1
+[Pipeline] // catchError
+[Pipeline] }
+[Pipeline] // script
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Node.js scanning)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>C:/Users/Soma/AppData/Local/Programs/Python/Python313/Scripts/nodejsscan.exe -d . -o nodejsscan-report.json -v 
+
+[INFO] Running Static Analyzer on - .
+
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (semgrep scanning)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>set PYTHONIOENCODING=utf-8 
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>C:/Users/Soma/AppData/Local/Programs/Python/Python313/Scripts/semgrep.exe --config auto . --verbose --json  1>semgrep_results.json 
+running 1061 rules from 1 config remote-registry_0
+Rules:
+<SKIPPED DATA (too many entries; use --max-log-list-entries)>
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 1012 files tracked by git with 1061 Code rules:
+                                                                                                                        
+  Language      Rules   Files          Origin      Rules                                                                
+ ─────────────────────────────        ───────────────────                                                               
+  <multilang>      77     675          Community    1061                                                                
+  ts              166     468                                                                                           
+  json              4     106                                                                                           
+  yaml             31      85                                                                                           
+  html              1      76                                                                                           
+  solidity         21      17                                                                                           
+  js              156      13                                                                                           
+  dockerfile        5       1                                                                                           
+  bash              4       1                                                                                           
+                                                                                                                        
+SCA findings adjustment: No SCA rules to adjust
+
+========================================
+Files skipped:
+========================================
+
+  Always skipped by Semgrep:
+
+   • <none>
+
+  Skipped by .gitignore:
+  (Disable by passing --no-git-ignore)
+
+   • <all files not listed by `git ls-files` were skipped>
+
+  Skipped by .semgrepignore:
+  - https://semgrep.dev/docs/ignoring-files-folders-code/#understand-semgrep-defaults
+
+   • <SKIPPED DATA (too many entries; use --max-log-list-entries)>
+
+  Skipped by --include patterns:
+
+   • <none>
+
+  Skipped by --exclude patterns:
+
+   • <none>
+
+  Files that couldn't be accessed:
+
+   • <none>
+
+  Skipped by limiting to files smaller than 1000000 bytes:
+  (Adjust with the --max-target-bytes flag)
+
+   • frontend\src\assets\private\earth_normalmap_flat4k.jpg
+   • frontend\src\assets\private\fair_clouds_4k.png
+   • frontend\src\assets\private\starry_background.jpg
+   • frontend\src\assets\public\images\products\20th.jpeg
+   • frontend\src\assets\public\images\uploads\IMG_4253.jpg
+   • frontend\src\assets\public\videos\owasp_promo.mp4
+   • screenshots\screenshot07.png
+   • screenshots\slideshow.gif
+
+  Partially analyzed due to parsing or internal Semgrep errors
+
+   • .github\FUNDING.yml
+   • .github\workflows\release.yml (~1.1% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 36-36 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\loginAdminChallenge_1.ts
+   • data\static\codefixes\loginAdminChallenge_2.ts
+   • data\static\codefixes\loginAdminChallenge_3.ts
+   • data\static\codefixes\loginAdminChallenge_4_correct.ts
+   • data\static\codefixes\loginBenderChallenge_1.ts
+   • data\static\codefixes\loginBenderChallenge_2_correct.ts
+   • data\static\codefixes\loginBenderChallenge_3.ts
+   • data\static\codefixes\loginBenderChallenge_4.ts
+   • data\static\codefixes\loginJimChallenge_1_correct.ts
+   • data\static\codefixes\loginJimChallenge_2.ts
+   • data\static\codefixes\loginJimChallenge_3.ts
+   • data\static\codefixes\loginJimChallenge_4.ts
+   • data\static\codefixes\registerAdminChallenge_1.ts
+   • data\static\codefixes\registerAdminChallenge_2.ts
+   • data\static\codefixes\registerAdminChallenge_3_correct.ts
+   • data\static\codefixes\registerAdminChallenge_4.ts
+   • data\static\codefixes\restfulXssChallenge_2.ts (~1.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 57-57 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\restfulXssChallenge_3.ts (~2.1% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 43-43 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\restfulXssChallenge_4.ts (~1.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 57-57 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\tokenSaleChallenge_1.ts (~1.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 18-18 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\tokenSaleChallenge_2.ts (~1.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 19-19 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\tokenSaleChallenge_3_correct.ts (~3.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 14-14 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\weakPasswordChallenge_1_correct.ts (~100.0% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 1-9 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\weakPasswordChallenge_2.ts (~100.0% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 1-13 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\weakPasswordChallenge_3.ts (~100.0% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 1-12 due to exception "PartialParsing" raised during analysis
+
+   • data\static\codefixes\weakPasswordChallenge_4.ts (~100.0% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 1-8 due to exception "PartialParsing" raised during analysis
+
+   • Dockerfile (~47.1% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 28-51 due to exception "PartialParsing" raised during analysis
+
+   • frontend\src\app\privacy-policy\privacy-policy.component.html (~0.6% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 58-58 due to exception "PartialParsing" raised during analysis
+
+   • frontend\src\app\Services\user.service.ts (~1.2% of lines always skipped)
+
+     The following lines were skipped for all analysis:
+
+     • lines 14-14 due to exception "PartialParsing" raised during analysis
+
+   • frontend\src\assets\private\three.js (3 rules failed to run)
+
+     The following 3 rules failed to run on this file:
+
+     • Rule javascript.express.security.injection.raw-html-format.raw-html-format due to exception "Timeout" raised
+       during analysis
+     • Rule javascript.lang.security.audit.unsafe-formatstring.unsafe-formatstring due to exception "Timeout" raised
+       during analysis
+     • Rule javascript.lang.security.insecure-object-assign.insecure-object-assign due to exception "Timeout" raised
+       during analysis
+
+   • semgrep_results.json
+
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 224 (224 blocking)
+ • Rules run: 305
+ • Targets scanned: 1012
+ • Parsed lines: ~99.9%
+ • Scan skipped: 
+   ◦ Files larger than  files 1.0 MB: 8
+   ◦ Files matching .semgrepignore patterns: 139
+ • Scan was limited to files tracked by git
+Ran 305 rules on 1012 files: 224 findings.
+
+📢 Too many findings? Try Semgrep Pro for more powerful queries and less noise.
+   See https://sg.run/false-positives.
+Sending pseudonymous metrics since metrics are configured to AUTO and registry usage is True
+[Pipeline] archiveArtifacts
+Archiving artifacts
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Upload Scan results to DefectDojo)
+[Pipeline] bat
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>echo Uploading Gitleaks report to DefectDojo... 
+Uploading Gitleaks report to DefectDojo...
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>curl -X POST "https://demo.defectdojo.org//api/v2/import-scan/"                   -H "Authorization: Token ****"                   -F "engagement=4"                   -F "scan_type=Gitleaks Scan"                   -F "file=@gitleaks-report.json"                   -F "active=true"                   -F "verified=false" 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 77  143k    0     0   77  111k      0  85313  0:00:01  0:00:01 --:--:-- 85569100  143k    0     0  100  143k      0  57090  0:00:02  0:00:02 --:--:-- 57177100  143k    0     0  100  143k      0  41101  0:00:03  0:00:03 --:--:-- 41144100  143k    0     0  100  143k      0  32121  0:00:04  0:00:04 --:--:-- 32148100  143k    0     0  100  143k      0  26356  0:00:05  0:00:05 --:--:-- 27499100  143k    0     0  100  143k      0  22305  0:00:06  0:00:06 --:--:--  6233100  143k    0     0  100  143k      0  19345  0:00:07  0:00:07 --:--:--     0100  143k    0     0  100  143k      0  17093  0:00:08  0:00:08 --:--:--     0100  144k  100  1269  100  143k    132  15386  0:00:09  0:00:09 --:--:--   254100  144k  100  1269  100  143k    132  15385  0:00:09  0:00:09 --:--:--   318
+{"minimum_severity":"Info","active":true,"verified":false,"endpoint_to_add":null,"auto_create_context":false,"deduplication_on_engagement":false,"lead":null,"push_to_jira":false,"api_scan_configuration":null,"create_finding_groups_for_all_findings":true,"test_id":33,"engagement_id":4,"product_id":1,"product_type_id":2,"statistics":{"after":{"info":{"active":0,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":0},"low":{"active":0,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":0},"medium":{"active":0,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":0},"high":{"active":120,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":120},"critical":{"active":0,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":0},"total":{"active":120,"verified":0,"duplicate":0,"false_p":0,"out_of_scope":0,"is_mitigated":0,"risk_accepted":0,"total":120}}},"apply_tags_to_findings":false,"apply_tags_to_endpoints":false,"scan_type":"Gitleaks Scan","engagement":4,"close_old_findings":false,"close_old_findings_product_scope":false,"test":33}
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>echo Uploading Semgrep report to DefectDojo... 
+Uploading Semgrep report to DefectDojo...
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>curl -X POST "https://demo.defectdojo.org//api/v2/import-scan/"                   -H "Authorization: Token ****"                   -F "engagement=4"                   -F "scan_type=Semgrep JSON Report"                   -F "file=@semgrep_results.json"                   -F "active=true"                   -F "verified=false" 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 57  363k    0     0   57  207k      0   130k  0:00:02  0:00:01  0:00:01  130k100  363k    0     0  100  363k      0   112k  0:00:03  0:00:03 --:--:--  112k100  363k    0     0  100  363k      0  87681  0:00:04  0:00:04 --:--:-- 87740100  363k    0     0  100  363k      0  70917  0:00:05  0:00:05 --:--:-- 70965100  363k    0     0  100  363k      0  59519  0:00:06  0:00:06 --:--:-- 66562100  363k    0     0  100  363k      0  51305  0:00:07  0:00:07 --:--:-- 28168100  363k    0     0  100  363k      0  45071  0:00:08  0:00:08 --:--:--     0100  363k    0     0  100  363k      0  40186  0:00:09  0:00:09 --:--:--     0100  363k    0     0  100  363k      0  36256  0:00:10  0:00:10 --:--:--     0100  363k    0     0  100  363k      0  33019  0:00:11  0:00:11 --:--:--     0100  363k    0     0  100  363k      0  30315  0:00:12  0:00:12 --:--:--     0100  363k    0     0  100  363k      0  28029  0:00:13  0:00:13 --:--:--     0100  363k    0     0  100  363k      0  26058  0:00:14  0:00:14 --:--:--     0100  363k    0     0  100  363k      0  24346  0:00:15  0:00:15 --:--:--     0100  363k    0     0  100  363k      0  22844  0:00:16  0:00:16 --:--:--     0100  363k    0     0  100  363k      0  21502  0:00:17  0:00:17 --:--:--     0100  363k    0     0  100  363k      0  20323  0:00:18  0:00:18 --:--:--     0100  363k    0     0  100  363k      0  19268  0:00:19  0:00:19 --:--:--     0100  363k    0     0  100  363k      0  18318  0:00:20  0:00:20 --:--:--     0100  364k  100  1430  100  363k     69  18153  0:00:20  0:00:20 --:--:--   339
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DefectDojo | Demo Site</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="appsecpipeline, open source, source of truth, application security, appsec, enterprise vulnerability management, web vulnerability scanner, vulnerability management software, vulnerability correlation" name="keywords">
+  <meta content="DefectDojo is an open-source application vulnerability management correlation and security orchestration tool. Scale security by creating an AppSecPipeline with DefectDojo." name="description">
+
+  <!-- Favicons -->
+  <link href="/errors/img/favicon.ico" rel="icon">
+
+  <!-- Main Stylesheet File -->
+  <link href="/errors/css/style.css" rel="stylesheet">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124190882-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-124190882-1');
+  </script>
+</head>
+<body>
+
+<div class="site">
+	<div class="sketch">
+		<div class="bee-sketch red"></div>
+		<div class="bee-sketch blue"></div>
+	</div>
+
+	<h1>Hold tight!
+		<small>Demo is being refreshed</small></h1>
+</div>
+<!-- 185234a8-f58b-11ef-8b55-873f75b8b144 -->
+</body>
+</html>
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>echo Uploading NJSSCAN report to DefectDojo... 
+Uploading NJSSCAN report to DefectDojo...
+
+C:\ProgramData\Jenkins\.jenkins\workspace\juice-test-pipeline>curl -X POST "https://demo.defectdojo.org//api/v2/import-scan/"                   -H "Authorization: Token ****"                   -F "engagement=4"                   -F "scan_type=Node Security Platform Scan"                   -F "file=@nodejsscan-report.json"                   -F "active=true"                   -F "verified=false" 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 40  198k    0     0   40 81638      0  72046  0:00:02  0:00:01  0:00:01 72182100  198k  100    59  100  198k     26  91052  0:00:02  0:00:02 --:--:-- 91168100  198k  100    59  100  198k     26  91000  0:00:02  0:00:02 --:--:-- 91127
+{"message":"Internal server error, check logs for details"}
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
